@@ -29,7 +29,6 @@ define([
 ], function (declare, _WidgetBase, _TemplatedMixin, dom, dojoConstruct, domAttr, widgetTemplate) {
     "use strict";
 
-    var packageVariableName = "";
     // Declare widget's prototype.
     return declare("NativeAppStarter.widget.NativeAppStarter", [ _WidgetBase, _TemplatedMixin ], {
         // _TemplatedMixin will create our dom node using this HTML template.
@@ -61,8 +60,6 @@ define([
         update: function (obj, callback) {
             logger.debug(this.id + ".update");
             this._contextObj = obj;
-            packageVariableName = this._contextObj.get(this.googlePackageName);
-            logger.debug("packageVariableName: " + packageVariableName);
 
             //logger.debug("package directly" + this._contextObj.get(this.googlePackageName));
 
@@ -90,10 +87,30 @@ define([
         },
 
         _startApp: function() {
-            logger.debug("packageVariableName: " + packageVariableName);
-          startApp.set({
-            "package": packageVariableName
-          }).start();
+        //logger.debug("contextObj name" + this._contextObj.get(this.googlePackageName))
+
+        var appToLoad = this._contextObj.get(this.googlePackageName);
+
+            if(this.checkInstalled) {
+                //Check whether the app is installed
+                startApp.set({
+                    "package": appToLoad
+                    }).check(function(values) {
+                    startApp.set({
+                    "package": appToLoad
+                    }).start();
+
+                }, function(error) {
+                    startApp.set({
+                        "action":"ACTION_VIEW",
+                        "uri":"market://details?id="+appToLoad
+                    }).start();
+                })
+            } else {
+                startApp.set({
+                "package": appToLoad
+                }).start();
+            }
         }
     });
 });

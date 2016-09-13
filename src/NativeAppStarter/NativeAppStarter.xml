@@ -24,7 +24,7 @@
         <property key="checkInstalled" type="boolean"  defaultValue="false">
             <caption>Check if installed</caption>
             <category>General</category>
-            <description>Check whether the app is installed first, and only start if it is</description>
+            <description>Check whether the app is installed first. If the app is installed, it starts, if it isn't installed the Play store will open with the opportunity to install the app.</description>
         </property>
     </properties>
 </widget>
