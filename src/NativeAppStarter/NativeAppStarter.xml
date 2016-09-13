@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="NativeAppStarter.widget.NativeAppStarter" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>NativeAppStarter</name>
+    <description>Start a native app installed on your mobile device via Mendix</description>
+
+    <icon />
+
+    <properties>
+        <property key="buttonCaption" type="string" required="true" defaultValue="Start App">
+            <caption>Button caption</caption>
+            <category>General</category>
+            <description>The caption of the button</description>
+        </property>
+        <property key="googlePackageName" type="attribute" required="true" defaultValue="">
+            <caption>PackageName</caption>
+            <category>Android</category>
+            <description>The complete packagename of the app to start. Easily found via the Google Play Store. Example: com.mendix.MendixDeveloperApp</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <property key="checkInstalled" type="boolean"  defaultValue="false">
+            <caption>Check if installed</caption>
+            <category>General</category>
+            <description>Check whether the app is installed first, and only start if it is</description>
+        </property>
+    </properties>
+</widget>
+
