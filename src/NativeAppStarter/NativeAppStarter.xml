@@ -3,7 +3,9 @@
     <name>NativeAppStarter</name>
     <description>Start a native app installed on your mobile device via Mendix</description>
 
-    <icon />
+    <icon>
+        /9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/wAALCAAQABABAREA/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/9oACAEBAAA/APn+y03UbOF9O8N/2PFe2r2cWpX97Pbpcfabk4WKHzj+6jiOUdo+ch3d9pRULzTdRvIU07xH/Y8t7cteRabf2U9u9x9ptjhopvJP72OU4RGk5yUZH2B1dLDUZdQt5NS0PSvD2q311JZzahZajbRy3cc9ueWhDkGWK4OWkWME/eRlChHdL7UZdPt49S13SvD2lX1rJeTadZadbRxXck9weGmCEmKK34aNZAD91FUqXdP/2Q==
+    </icon>
 
     <properties>
         <property key="buttonCaption" type="string" required="true" defaultValue="Start App">
