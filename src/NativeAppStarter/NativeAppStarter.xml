@@ -13,10 +13,18 @@
             <category>General</category>
             <description>The caption of the button</description>
         </property>
-        <property key="googlePackageName" type="attribute" required="true" defaultValue="">
+        <property key="googlePackageName" type="attribute" required="false" defaultValue="">
             <caption>PackageName</caption>
             <category>Android</category>
             <description>The complete packagename of the app to start. Easily found via the Google Play Store. Example: com.mendix.MendixDeveloperApp</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <property key="iosUri" type="attribute" required="false">
+            <caption>Scheme URI</caption>
+            <category>iOS</category>
+            <description>The URI used by iOS to launch the external app. Make sure to whitelist this scheme!</description>
             <attributeTypes>
                 <attributeType name="String" />
             </attributeTypes>

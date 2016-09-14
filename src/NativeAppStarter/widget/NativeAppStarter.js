@@ -43,6 +43,7 @@ define([
         buttonCaption: "",
         googlePackageName: "",
         checkInstalled: "",
+        iosUri: "",
 
         // dojo.declare.constructor is called to construct the widget instance. Implement to initialize non-primitive properties.
         constructor: function () {
@@ -61,55 +62,47 @@ define([
             logger.debug(this.id + ".update");
             this._contextObj = obj;
 
-            //logger.debug("package directly" + this._contextObj.get(this.googlePackageName));
-
-        },
-
-        // mxui.widget._WidgetBase.enable is called when the widget should enable editing. Implement to enable editing if widget is input widget.
-        enable: function () {
-          logger.debug(this.id + ".enable");
-        },
-
-        // mxui.widget._WidgetBase.enable is called when the widget should disable editing. Implement to disable editing if widget is input widget.
-        disable: function () {
-          logger.debug(this.id + ".disable");
-        },
-
-        // mxui.widget._WidgetBase.resize is called when the page's layout is recalculated. Implement to do sizing calculations. Prefer using CSS instead.
-        resize: function (box) {
-          logger.debug(this.id + ".resize");
-        },
-
-        // mxui.widget._WidgetBase.uninitialize is called when the widget is destroyed. Implement to do special tear-down work.
-        uninitialize: function () {
-          logger.debug(this.id + ".uninitialize");
-            // Clean up listeners, helper objects, etc. There is no need to remove listeners added with this.connect / this.subscribe / this.own.
         },
 
         _startApp: function() {
         //logger.debug("contextObj name" + this._contextObj.get(this.googlePackageName))
 
-        var appToLoad = this._contextObj.get(this.googlePackageName);
+            if(device.platform === 'iOS') {
+                var appToLoad = this._contextObj.get(this.iosUri);
+                if (this.checkInstalled) {
+                    startApp.set(appToLoad).check(function(values) {
+                        logger.debug(values);
+                        startApp.set(appToLoad).start()
+                    });
+                } else {
+                    startApp.set(appToLoad).start(function() {
+                        //OK
+                    }, function(error) {
+                        console.log(error);
+                    });
+                }
+            } else if(device.platform === 'Android') {
+                var appToLoad = this._contextObj.get(this.googlePackageName);
+                if(this.checkInstalled) {
+                    //Check whether the app is installed
+                    startApp.set({
+                        "package": appToLoad
+                        }).check(function(values) {
+                        startApp.set({
+                        "package": appToLoad
+                        }).start();
 
-            if(this.checkInstalled) {
-                //Check whether the app is installed
-                startApp.set({
-                    "package": appToLoad
-                    }).check(function(values) {
+                    }, function(error) {
+                        startApp.set({
+                            "action":"ACTION_VIEW",
+                            "uri":"market://details?id="+appToLoad
+                        }).start();
+                    })
+                } else {
                     startApp.set({
                     "package": appToLoad
                     }).start();
-
-                }, function(error) {
-                    startApp.set({
-                        "action":"ACTION_VIEW",
-                        "uri":"market://details?id="+appToLoad
-                    }).start();
-                })
-            } else {
-                startApp.set({
-                "package": appToLoad
-                }).start();
+                }
             }
         }
     });

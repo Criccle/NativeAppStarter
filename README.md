@@ -7,17 +7,58 @@ Think Skype, games, the store itself.
 
 For more information on contributing to this repository visit [Contributing to a GitHub repository](https://world.mendix.com/display/howto50/Contributing+to+a+GitHub+repository)!
 
-## Typical usage scenario
+## Notes before installation
 
-Add the widget to a dataview / templategrid and select the attribute which holds the (Android) packagename of the app you want to start.
-
-Build for phonegap and be sure to include the lampa startapp plugin to your phonegap build config.xml:
+This plugin relies on the "lampa startapp" PhoneGap Plugin. Using this widget requires you to edit your PhoneGap config.xml file to make use of the lampa plugin, by adding the following line of code.
 
         <gap:plugin name="com.lampa.startapp" source="npm" version="0.1.4" />
 
-If you need any help regarding to building your app using Phonegap, and customizing the buildpackage, I suggest visiting [Customizing PhoneGap Build packages](https://world.mendix.com/display/refguide5/Customizing+PhoneGap+Build+packages)!
+If you need any help regarding customizing the PhoneGap package, please visit [Customizing PhoneGap Build packages](https://world.mendix.com/display/refguide5/Customizing+PhoneGap+Build+packages)!
 
- 
+## Typical usage scenario
+
+Add the widget to a dataview / templategrid
+
+### Android
+Select the attribute which holds the (Android) packagename of the app you want to start. The Android Package Name can be easily found by browsing to the Play Store on your desktop and searching for the required app. The Address bar shows something like 
+    
+    https://play.google.com/store/apps/details?id=com.mendix.MendixDeveloperApp
+
+where com.mendix.MendixDevelopeApp is the package name.
+
+### iOS
+
+iOS uses a different way to handle external app requests. They use URI schemes for example: 
+
+    twitter://
+
+Besides this, Apple requires you to whitelist each individual URI in the -Info.plist under the LSApplicationQueriesSchemes key file like so:
+
+    <key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>instagram</string>
+        </array>
+
+Note that I haven't been able to test any of this, so iOS is currently not actively supported. If you do have the ability to test this and fix any bugs in the iOS code, feel free to do so and issue a pull request!
+
+## Properties
+
+The widget has three tabs:
+
+* General
+    - Caption of the generated button
+    - Boolean whether to check for installation
+* Android
+    - Complete Android Package Name
+* iOS
+    - Complete URI scheme
+
+By default the generated button has the following classes:
+
+     btn btn-default startButton
+
+with those you can style away! :-)
+
 ## Description
 
 This widget uses the lampa startapp phonegap plugin to allow you to start already installed apps from within your Mendix Application
