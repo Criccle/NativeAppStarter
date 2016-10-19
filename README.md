@@ -26,7 +26,7 @@ Select the attribute which holds the (Android) packagename of the app you want t
 
 where com.mendix.MendixDevelopeApp is the package name.
 
-If you only want to open a browser window with an URL, you can use the properties 'Browser Only' and 'Browser URL'. This will open the system browser with the speficied URL instead of the built-in Cordova browser, which isn't all to user-friendly
+If you only want to open a browser window with a URL, you can use the properties 'Browser Only' and 'Browser URL'. This will open the system browser with the speficied URL instead of the built-in Cordova browser, which isn't all too user-friendly.
 
 ### iOS
 
