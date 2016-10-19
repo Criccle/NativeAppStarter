@@ -21,6 +21,19 @@
                 <attributeType name="String" />
             </attributeTypes>
         </property>
+        <property key="browserOnly" type="boolean" defaultValue="false">
+            <caption>Browser only</caption>
+            <category>Android</category>
+            <description>This is a test, to only open the Android browser, with the specified URL</description>
+        </property>
+        <property key="browserURL" required="false" defaultValue="" type="attribute">
+            <caption>browser URL</caption>
+            <category>Android</category>
+            <description>URL the browser should open, only works if the boolean is set to true</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
         <property key="iosUri" type="attribute" required="false">
             <caption>Scheme URI</caption>
             <category>iOS</category>

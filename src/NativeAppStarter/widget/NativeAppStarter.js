@@ -44,6 +44,8 @@ define([
         googlePackageName: "",
         checkInstalled: "",
         iosUri: "",
+        browserOnly: "",
+        browserURL: "",
 
         // dojo.declare.constructor is called to construct the widget instance. Implement to initialize non-primitive properties.
         constructor: function () {
@@ -82,26 +84,34 @@ define([
                     });
                 }
             } else if(device.platform === 'Android') {
-                var appToLoad = this._contextObj.get(this.googlePackageName);
-                if(this.checkInstalled) {
-                    //Check whether the app is installed
-                    startApp.set({
-                        "package": appToLoad
-                        }).check(function(values) {
-                        startApp.set({
-                        "package": appToLoad
-                        }).start();
-
-                    }, function(error) {
-                        startApp.set({
-                            "action":"ACTION_VIEW",
-                            "uri":"market://details?id="+appToLoad
-                        }).start();
-                    })
-                } else {
-                    startApp.set({
-                    "package": appToLoad
+                if(this.browserOnly) {
+                    var openuri = this._contextObj.get(this.browserURL);
+                    startApp.set({ /* params */
+                     "action": "ACTION_VIEW",
+                     "uri": openuri
                     }).start();
+                } else {
+                    var appToLoad = this._contextObj.get(this.googlePackageName);
+                    if(this.checkInstalled) {
+                        //Check whether the app is installed
+                        startApp.set({
+                            "package": appToLoad
+                            }).check(function(values) {
+                            startApp.set({
+                            "package": appToLoad
+                            }).start();
+
+                        }, function(error) {
+                            startApp.set({
+                                "action":"ACTION_VIEW",
+                                "uri":"market://details?id="+appToLoad
+                            }).start();
+                        })
+                    } else {
+                        startApp.set({
+                        "package": appToLoad
+                        }).start();
+                    }
                 }
             }
         }
