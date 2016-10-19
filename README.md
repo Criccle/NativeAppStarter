@@ -26,6 +26,8 @@ Select the attribute which holds the (Android) packagename of the app you want t
 
 where com.mendix.MendixDevelopeApp is the package name.
 
+If you only want to open a browser window with an URL, you can use the properties 'Browser Only' and 'Browser URL'. This will open the system browser with the speficied URL instead of the built-in Cordova browser, which isn't all to user-friendly
+
 ### iOS
 
 iOS uses a different way to handle external app requests. They use URI schemes for example: 
@@ -50,6 +52,8 @@ The widget has three tabs:
     - Boolean whether to check for installation
 * Android
     - Complete Android Package Name
+    - Browser only toggle if you only want to open a URL
+    - Browser URL 
 * iOS
     - Complete URI scheme
 
